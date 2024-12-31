@@ -24,13 +24,14 @@ const Signup = () => {
     console.log("form data", formData);
     try {
       const response = await apiClient.post("/user/register", formData);
+      console.log("response", response?.data);
       if (response.status === 201) {
         setFormData({ name: "", email: "", password: "" });
         navigate("/login");
       }
     } catch (error) {
       console.error("Signup Error:", error);
-      setError("Failed to signup. Please try again.");
+      setError(error?.response?.data?.message || "Something went wrong!");
     } finally {
       setLoading(false);
     }

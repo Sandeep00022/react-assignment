@@ -27,6 +27,7 @@ apiClient.interceptors.response.use(
     if (error.response?.status === 401) {
       console.error("Unauthorized! Redirecting to login...");
     }
+    console.log("response", error);
     return Promise.reject(error);
   }
 );
